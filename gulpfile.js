@@ -12,5 +12,6 @@ gulp.task('default', function () {
         .pipe(babel({
             presets: ['es2015']
         }))
+        .pipe(uglify())
         .pipe(gulp.dest('./'))
 })
