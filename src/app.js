@@ -14,5 +14,3 @@ function next(){
 }
 
 render()
-
-console.log('call "next()" for change chord using circle of fourths')
