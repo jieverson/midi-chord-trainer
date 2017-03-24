@@ -21,17 +21,19 @@ function Scale(tone){
     }
 }
 
-function Chord(notes){
+function Chord(notes, name){
     let chord = {
         notes: notes,
+        name: () => 
+            notes[0].str() + name,
+        str: () =>
+            notes.map(x => x.str()),
         invert: inv => {
             for(var i = 0; i < inv; i++){
                 notes.push(notes.shift())
             }
             return chord
-        },
-        str: () =>
-            notes.map(x => x.str())
+        }
     }
     return chord
 }
@@ -43,7 +45,7 @@ function MajorChord(chord){
             scale.root(),
             scale.majorThird(),
             scale.perfectFifth()
-        ])
+        ], '')
 }
 
 function MinorChord(chord){
@@ -53,7 +55,7 @@ function MinorChord(chord){
             scale.root(),
             scale.minorThird(),
             scale.perfectFifth()
-        ])
+        ], 'm')
 }
 
 function MajorSeventhChord(chord){
@@ -64,7 +66,7 @@ function MajorSeventhChord(chord){
             scale.majorThird(),
             scale.perfectFifth(),
             scale.majorSeventh()
-        ])
+        ], 'maj7')
 }
 
 function MinorSeventhChord(chord){
@@ -75,7 +77,7 @@ function MinorSeventhChord(chord){
             scale.minorThird(),
             scale.perfectFifth(),
             scale.minorSeventh()
-        ])
+        ], 'm7')
 }
 
 function DominantSeventhChord(chord){
@@ -86,7 +88,17 @@ function DominantSeventhChord(chord){
             scale.majorThird(),
             scale.perfectFifth(),
             scale.minorSeventh()
-        ])
+        ], '7')
+}
+
+function CircleOfFourths(chord_type){
+    chord_type = chord_type ? chord_type : MajorChord
+
+    return Array(12).fill(0)
+        .reduce((p, x, i) => {
+            p.push(chord_type(i * 5))
+            return p
+        }, [])
 }
 
 // C Major
