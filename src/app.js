@@ -1,3 +1,6 @@
+const CircleOfFourths = require('./music/CircleOfFourths.js')
+const MajorSeventhChord = require('./music/chords/MajorSeventhChord.js')
+
 let progression = CircleOfFourths(MajorSeventhChord)
 
 function render(){
