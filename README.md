@@ -4,3 +4,8 @@
 npm install
 gulp
 ```
+
+### Release:
+```
+gulp release
+```

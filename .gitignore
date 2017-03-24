@@ -59,6 +59,3 @@ typings/
 
 # vscode
 .vscode/
-
-# js bundle
-bundle.js
