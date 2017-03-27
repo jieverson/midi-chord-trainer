@@ -1,3 +1,4 @@
+const midi = require('./midi.js')
 const CircleOfFourths = require('./music/CircleOfFourths.js')
 const MajorSeventhChord = require('./music/chords/MajorSeventhChord.js')
 
@@ -14,3 +15,7 @@ function next(){
 }
 
 render()
+
+/*midi.onchange = notes => {
+
+}*/

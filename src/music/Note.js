@@ -5,6 +5,7 @@ module.exports = function (key){
     
     return {
         data: data,
+        _key: key,
         str: () =>
             notes[data]
     }
