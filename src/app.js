@@ -17,5 +17,5 @@ function next(){
 render()
 
 /*midi.onchange = notes => {
-
+    console.log('blee')
 }*/

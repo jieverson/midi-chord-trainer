@@ -29,7 +29,8 @@ gulp.task('default', function () {
         './src/app.js', { 
             debug: true
         }))
-    watching.on('update', () => bundle(watching))
+    watching.on('update', () => bundle(watching)
+            .on('end', () => console.log('new bundle generated: ' + new Date())))
 
     return bundle(watching)
 })
