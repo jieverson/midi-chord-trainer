@@ -1,20 +1,30 @@
 const midi = require('./midi.js')
-const CircleOfFourths = require('./music/CircleOfFourths.js')
 const Chord = require('./music/Chord.js')
-const MajorSeventhChord = require('./music/chords/MajorSeventhChord.js')
+const Progression = require('./music/Progression.js')
+const CircleOfFourths = require('./music/CircleOfFourths.js')
+const MajorSeventh735 = require('./music/chord-voicings/MajorSeventh-7-3-5.js')
+const DominantSeventh735 = require('./music/chord-voicings/DominantSeventh-7-3-5.js')
+const MinorSeventh735 = require('./music/chord-voicings/MinorSeventh-7-3-5.js')
 
-let progression = CircleOfFourths(MajorSeventhChord)
-let currentChord = progression[0]
+let progression = Progression('Rootless 7-3-5',
+    CircleOfFourths(MajorSeventh735)
+    .concat(CircleOfFourths(DominantSeventh735))
+    .concat(CircleOfFourths(MinorSeventh735)))
+
+let currentChord = progression.chords[0]
+let title = document.getElementById('title') 
 let card = document.getElementById('card')
 
 function render(){
+    title.innerText = progression.name,
     card.innerText = currentChord.name()
     clean()
 }
 
+
 function next(){
-    progression.push(progression.shift())
-    currentChord = progression[0]
+    progression.chords.push(progression.chords.shift())
+    currentChord = progression.chords[0]
     render()
 }
 
@@ -33,7 +43,10 @@ midi.onchange = notes => {
                 right()
                 setTimeout(next, 1000)
         }
-        else{
+        else if(notes.length > 0){
+            reading()
+        }
+        else {
             clean()
         }
     }
@@ -42,14 +55,22 @@ midi.onchange = notes => {
 function clean(){
     card.classList.remove('right')
     card.classList.remove('wrong')
+    card.classList.remove('reading')
+}
+
+function state(state){
+    clean()
+    card.classList.add(state)
+}
+
+function reading(){
+    state('reading')
 }
 
 function right(){
-    clean()
-    card.classList.add('right')
+    state('right')
 }
 
 function wrong(){
-    clean()
-    card.classList.add('wrong')
+    state('wrong')
 }
