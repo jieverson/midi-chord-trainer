@@ -23,7 +23,9 @@ function onMIDIMessage( event ) {
         }
     }
 
-    midi.onchange()
+    midi.notes.sort((a, b) => a._key > b._key)
+
+    midi.onchange(midi.notes)
 }
 
 function onMIDISuccess( midiAccess ) {
