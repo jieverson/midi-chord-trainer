@@ -1,10 +1,9 @@
 //const audio = require('./audio.js')
 const Note = require('./music/Note.js')
-const Chord = require('./music/Chord.js')
 
 let midi = {
     notes: [],
-    onchange: () => console.log(Chord(midi.notes).str())
+    onchange: () => { }
 }
 
 function onMIDIMessage( event ) {
