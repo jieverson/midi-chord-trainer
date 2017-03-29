@@ -1,13 +1,13 @@
 const Scale = require('../Scale.js')
 const Chord = require('../Chord.js')
 
-module.exports = function (chord){
-    let scale = Scale(chord)
+module.exports = function (tone){
+    let scale = Scale(tone)
 
     return Chord([
             scale.root(),
             scale.minorThird(),
             scale.perfectFifth(),
             scale.minorSeventh()
-        ], 'm7')
+        ], '<small>m7</small>')
 }

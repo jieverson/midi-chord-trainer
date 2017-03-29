@@ -6,7 +6,8 @@ module.exports = function (tone){
 
     return Chord([
             scale.root(),
-            scale.majorThird(),
-            scale.perfectFifth()
-        ], '')
+            scale.minorThird(),
+            scale.diminishedFifth(),
+            scale.minorSeventh()
+        ], '<small>&#8709;</small>')
 }

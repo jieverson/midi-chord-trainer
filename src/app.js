@@ -1,23 +1,17 @@
 const midi = require('./midi.js')
 const Chord = require('./music/Chord.js')
-const Progression = require('./music/Progression.js')
-const CircleOfFourths = require('./music/CircleOfFourths.js')
-const MajorSeventh735 = require('./music/chord-voicings/MajorSeventh-7-3-5.js')
-const DominantSeventh735 = require('./music/chord-voicings/DominantSeventh-7-3-5.js')
-const MinorSeventh735 = require('./music/chord-voicings/MinorSeventh-7-3-5.js')
+const CircleOfFourths735 = require('./music/progressions/CircleOfFourths-7-3-5.js')
+const Diatonic735 = require('./music/progressions/Diatonic-7-3-5.js')
 
-let progression = Progression('Rootless 7-3-5',
-    CircleOfFourths(MajorSeventh735)
-    .concat(CircleOfFourths(DominantSeventh735))
-    .concat(CircleOfFourths(MinorSeventh735)))
+let progression = Diatonic735(6)
 
 let currentChord = progression.chords[0]
-let title = document.getElementById('title') 
+let voicing = document.getElementById('voicing') 
 let card = document.getElementById('card')
 
 function render(){
-    title.innerText = progression.name,
-    card.innerText = currentChord.name()
+    voicing.innerHTML = progression.name,
+    card.innerHTML = currentChord.name()
     clean()
 }
 
