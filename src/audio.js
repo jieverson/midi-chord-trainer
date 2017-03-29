@@ -4,7 +4,6 @@ let notes = []
 
 module.exports = {
     play: key => {
-        return
         let oscillator = context.createOscillator()
 
         let frequency = 440
@@ -29,7 +28,6 @@ module.exports = {
         })
     },
     stop: key => {
-        return
         let note = notes.find(x => x.key === key)
         note.oscillator.stop(0)
         notes.splice(notes.indexOf(note), 1)
