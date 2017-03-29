@@ -1,3 +1,4 @@
+const audio = require('./audio.js')
 const Note = require('./music/Note.js')
 const Chord = require('./music/Chord.js')
 
@@ -14,6 +15,7 @@ function onMIDIMessage( event ) {
     
     if(on){
         midi.notes.push(note)
+        audio.play(key)
     }
     else{
         let i = midi.notes.findIndex(
@@ -21,6 +23,7 @@ function onMIDIMessage( event ) {
         if (i > -1) {
             midi.notes.splice(i, 1)
         }
+        audio.stop(key)
     }
 
     midi.notes.sort((a, b) => a._key > b._key)
