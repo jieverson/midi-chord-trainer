@@ -8,6 +8,7 @@ let progression = Diatonic735(6)
 let currentChord = progression.chords[0]
 let voicing = document.getElementById('voicing') 
 let card = document.getElementById('card')
+let keys = document.getElementById('keys')
 
 function render(){
     voicing.innerHTML = progression.name,
@@ -44,6 +45,18 @@ midi.onchange = notes => {
             clean()
         }
     }
+
+    keys.innerHTML = '';
+    notes.forEach(note => {
+        let key = document.createElement('span')
+        key.innerHTML = nota.data
+        key.classList.add(
+            currentChord.some(x => 
+                x.data == nota.data)
+            ? 'right'
+            : 'wrong')
+        keys.appendChild(key)
+    })
 }
 
 function clean(){
